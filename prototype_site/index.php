@@ -119,16 +119,18 @@
 			        <img src="<?php echo $map; ?>" class="img-rounded">    <!-- map --> 
 		      	</div>
 		      	<div class="span5 ">
-		      		<h1>City: Orlando</h1><br>
+		      		<h1>City: <?php echo $deCode['current_observation']['display_location']['city']; ?></h1><br>
 			      		<div class="row">
-				      		<span class="span3">
-				      		<p class="lead">Temperature: 90F<br>
-					      		Humidity: 100%<br>
-					      		Wind Speed: 50mph<br>
-					      		Wind Direction: NE</p>
-				      		</span>
-				      		<span class="span2">
-					      	<img src="<?php echo $deCode['current_observation']['icon_url']; ?>" class="img-rounded" width="150">
+				      		<div class="span4">
+				      		<p class="lead">
+				      			<strong>Weather Type:</strong> <?php echo $deCode['current_observation']['weather']; ?><br>
+								<strong>Temperature:</strong> <?php echo $deCode['current_observation']['temperature_string']; ?><br>				      		
+					      		<strong>Humidity:</strong> <?php echo $deCode['current_observation']['relative_humidity']; ?><br>
+					      		<strong>Wind Speed:</strong> <?php echo $deCode['current_observation']['wind_mph']; ?> mph<br>
+					      		<strong>Wind Direction:</strong> <?php echo $deCode['current_observation']['wind_dir']; ?></p>
+				      		</div>
+				      		<div class="span1">
+					      	<img src="<?php echo $deCode['current_observation']['icon_url']; ?>" class="img-rounded" width="200">
 					      		<div class="row">
 					      		<div class="focus-font">
 					      			<div class="span1">
@@ -142,7 +144,7 @@
 					      		</div>
 
 					      		</div>
-				      		</span>
+				      		</div>
 			      		</div>
 		      	</div>
 			</div>
