@@ -46,30 +46,28 @@
   <body>
   
   <?php 
-	        	$url = "http://api.hostip.info/get_json.php?position=true";
-				$results = file_get_contents($url);
-				//var_dump($results);
-				$deCode = json_decode($results, true);
-				// var_dump($deCode);
-				$cityData = $deCode["city"];
-				
-				$state = preg_replace("/^.+, /", '' , $cityData);
-				//echo $state;
-				
-				$city = preg_replace("/, \w\w$/", '' , $cityData);
-				//echo $city;
-				
-				$cityFix = preg_replace("/ /", "_" , $city);
-				//echo $cityFix;
-				
-				$weatherAPI = "http://api.wunderground.com/api/e6a8c06bb1ce5653/conditions/q/". $state. "/" . $cityFix .".json";
-				$results = file_get_contents($weatherAPI);
-				//var_dump($results);
-				$deCode = json_decode($results, true);
-				//var_dump($deCode);
-				
-				
-        	?>
+		$url = "http://api.hostip.info/get_json.php?position=true";
+		$results = file_get_contents($url);
+		//var_dump($results);
+		$deCode = json_decode($results, true);
+		// var_dump($deCode);
+		$cityData = $deCode["city"];
+		
+		$state = preg_replace("/^.+, /", '' , $cityData);
+		//echo $state;
+		
+		$city = preg_replace("/, \w\w$/", '' , $cityData);
+		//echo $city;
+		
+		$cityFix = preg_replace("/ /", "_" , $city);
+		//echo $cityFix;
+		
+		$weatherAPI = "http://api.wunderground.com/api/e6a8c06bb1ce5653/conditions/q/". $state. "/" . $cityFix .".json";
+		$results = file_get_contents($weatherAPI);
+		//var_dump($results);
+		$deCode = json_decode($results, true);
+		//var_dump($deCode);
+	?>
         	<?php 
         	 	//echo ('<img src="{$deCode["current_observation"]["icon_url"]}" />');
         	 	//echo("<br />".$deCode['current_observation']['icon_url']);
@@ -115,37 +113,38 @@
           <div class="container">   
            <div class="hero-unit">
 			<div class="row">		     
-		      	<div class="span4 offset1">  		       
-			        <img src="<?php echo $map; ?>" class="img-rounded">    <!-- map --> 
+		      	<div class="span5">  		       
+			        <img src="<?php echo $map; ?>" class="img-rounded" width="400">    <!-- map --> 
 		      	</div>
 		      	<div class="span5 ">
 		      		<h1>City: <?php echo $deCode['current_observation']['display_location']['city']; ?></h1><br>
 			      		<div class="row">
 				      		<div class="span4">
-				      		<p class="lead">
+				      			<p class="lead">
 				      			<strong>Weather Type:</strong> <?php echo $deCode['current_observation']['weather']; ?><br>
 								<strong>Temperature:</strong> <?php echo $deCode['current_observation']['temperature_string']; ?><br>				      		
 					      		<strong>Humidity:</strong> <?php echo $deCode['current_observation']['relative_humidity']; ?><br>
 					      		<strong>Wind Speed:</strong> <?php echo $deCode['current_observation']['wind_mph']; ?> mph<br>
-					      		<strong>Wind Direction:</strong> <?php echo $deCode['current_observation']['wind_dir']; ?></p>
+					      		<strong>Wind Direction:</strong> <?php echo $deCode['current_observation']['wind_dir']; ?>
+					      		</p>
 				      		</div>
 				      		<div class="span1">
-					      	<img src="<?php echo $deCode['current_observation']['icon_url']; ?>" class="img-rounded" width="200">
-					      		<div class="row">
-					      		<div class="focus-font">
-					      			<div class="span1">
-					      				
-<!-- 					      					<i class="icon-thumbs-up span-green"></i> -->
-					      			</div>
-					      			<div class="span1">
-					      				
-<!-- 					      				<i class="icon-thumbs-down span-red"></i> -->
-					      			</div>
-					      		</div>
-
-					      		</div>
+				      			<div class="temp"> <?php echo $deCode['current_observation']['temp_f']; ?>&deg; </div>
+					      		<img src="<?php echo $deCode['current_observation']['icon_url']; ?>" class="icon-rounded">
 				      		</div>
+				      		
 			      		</div>
+			      		<div class="row">
+				      		<div class="focus-font">
+				      			<div class="span1">
+				      				<i class="icon-thumbs-up span-green"></i>
+				      			</div>
+				      			<div class="span1">
+				      				<i class="icon-thumbs-down span-red"></i>
+				      			</div>
+				      		</div>
+
+					     </div>
 		      	</div>
 			</div>
            </div>

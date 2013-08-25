@@ -228,6 +228,9 @@ body {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
+  background-image:url('../img/tileable_wood_texture.png');
+  background-repeat:repeat;
+
 }
 
 a {
@@ -242,14 +245,25 @@ a:focus {
 }
 
 .img-rounded {
-  -webkit-border-radius: 200px;
-     -moz-border-radius: 200px;
-          border-radius: 200px;
+	/* position: absolute; top: -89px; left: 177px; z-index: 999; */
+	background-color: #fff;
+  -webkit-border-radius: 250px;
+     -moz-border-radius: 250px;
+          border-radius: 250px;
           border: 20px solid #ccc;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-          
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);       
+}
+.icon-rounded {
+  background-color: #fff;
+  -webkit-border-radius: 200px;
+     -moz-border-radius: 200px;
+          border-radius: 200px;
+          border: 10px solid #ccc;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);       
 }
 
 .img-polaroid {
@@ -4802,20 +4816,50 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-inner {
-  background-color: #1b1b1b;
+  
+/*
+background-color: #332E2B;
+  background: #332E2B;
+*/
+
+ background: #45484d; /* Old browsers */
+  background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */ 
+  
+
+  
+  /* Gray Bar
+  background: #e0dfdf; 
+  background: -moz-linear-gradient(top,  #e0dfdf 0%, #a1a1a1 72%); 
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e0dfdf), color-stop(72%,#a1a1a1));
+  background: -webkit-linear-gradient(top,  #e0dfdf 0%,#a1a1a1 72%);
+  background: -o-linear-gradient(top,  #e0dfdf 0%,#a1a1a1 72%);
+  background: -ms-linear-gradient(top,  #e0dfdf 0%,#a1a1a1 72%);
+  background: linear-gradient(to bottom,  #e0dfdf 0%,#a1a1a1 72%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0dfdf', endColorstr='#a1a1a1',GradientType=0 ); 
+  */
+
+  /* OG One 
   background-image: -moz-linear-gradient(top, #222222, #111111);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
   background-image: -webkit-linear-gradient(top, #222222, #111111);
   background-image: -o-linear-gradient(top, #222222, #111111);
   background-image: linear-gradient(to bottom, #222222, #111111);
   background-repeat: repeat-x;
-  border-color: #252525;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+  */
+  
+  border-color: #45484d;
+  /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0); */
 }
 
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: #999999;
+  color: #332E2B;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -4827,7 +4871,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .brand {
-  color: #999999;
+  color: #A6C43B;
 }
 
 .navbar-inverse .navbar-text {
@@ -4844,7 +4888,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .nav .active > a:hover,
 .navbar-inverse .nav .active > a:focus {
   color: #ffffff;
-  background-color: #111111;
+  background-color: #A6C43B;
 }
 
 .navbar-inverse .navbar-link {
@@ -6135,10 +6179,14 @@ a.badge:focus {
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
+  background-color: rgba(51,46,43, 0.3); 
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
-          border-radius: 6px;
+          border-radius: 6px;  
+  -webkit-box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  	 -moz-box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  	 	  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
 .hero-unit h1 {
@@ -6146,7 +6194,18 @@ a.badge:focus {
   font-size: 60px;
   line-height: 1;
   letter-spacing: -1px;
-  color: inherit;
+  color: #fff;
+  text-shadow: 2px 2px 2px #333;
+}
+
+.hero-unit .temp {
+  margin-bottom: 20px;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #A6C43B;
+  text-shadow: 2px 2px 2px #333;
 }
 
 .hero-unit li {
