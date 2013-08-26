@@ -7,10 +7,7 @@ class View {
 
 	function getView($file='', $data=''){
 
-		$username = 'BlacktipH';
-		$filePath = 'Sites/SSL_Part2';
-
-		$fullPath = "/Users/".$username."/".$filePath."/project.com/views/" .$file. ".php";
+		$fullPath = "/Applications/MAMP/htdocs/ mvc_site/views/".$file.".php";
 
 		if(preg_match("/\w/", $file) && file_exists($fullPath)){
 			include($fullPath);
