@@ -1,36 +1,13 @@
 <?php
-<<<<<<< HEAD
-
-include("models/view.php");
-
-$view = new View();
-$view->printHeader();
-
-//===== Check to see if a controller is typed in
-if(empty($_GET["controller"])) {
-    $con = 'home';
-}
-else {
-    $con = $_GET["controller"];
-}
-
-//===== Decide which CONTROLLER to use
-if($con == 'home') {
-    include ("controllers/home.php");
-
-    $controller = new Home();
-    $controller->get($_GET);
-}
-
-?>  padding-top: 60px;
-=======
-	require 'php-sdk/facebook.php';
+	/*
+require 'php-sdk/.php';
 	$facebook = new Facebook(array(
 		'appId' => '139858236213584',
 		'secret' => '81da1c19b430343d0efdd95a12c00b9a'
  	));
  	
  	$coolBeans = "COOL BEANS";
+*/
 ?>
 <?php 
 	$url = "http://api.hostip.info/get_json.php?position=true";
@@ -81,7 +58,6 @@ if($con == 'home') {
     <style type="text/css">
       body {
         padding-top: 60px;
->>>>>>> cfac2e84e5e1152a6660de24d6052d14c60154a4
         padding-bottom: 40px;
       }
       .sidebar-nav {
@@ -116,7 +92,8 @@ if($con == 'home') {
   <body>
   <?php
 		//get user from facebook object
-		$user = $facebook->getUser();
+		/*
+$user = $facebook->getUser();
 		
 		if ($user): //check for existing user id
 			echo '<p>User ID: ', $user, '</p>';
@@ -129,6 +106,7 @@ if($con == 'home') {
 		endif; //check for user id
 		
 		var_dump($user);
+*/
   ?>
   
   					<!-- Nav Bar -->
