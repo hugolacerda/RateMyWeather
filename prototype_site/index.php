@@ -1,3 +1,47 @@
+<?php
+	require 'php-sdk/facebook.php';
+	$facebook = new Facebook(array(
+		'appId' => '139858236213584',
+		'secret' => '81da1c19b430343d0efdd95a12c00b9a'
+ 	));
+ 	
+ 	$coolBeans = "COOL BEANS";
+?>
+<?php 
+	$url = "http://api.hostip.info/get_json.php?position=true";
+	$results = file_get_contents($url);
+	//var_dump($results);
+	$deCode = json_decode($results, true);
+	// var_dump($deCode);
+	$cityData = $deCode["city"];
+	
+	$state = preg_replace("/^.+, /", '' , $cityData);
+	//echo $state;
+	
+	$city = preg_replace("/, \w\w$/", '' , $cityData);
+	//echo $city;
+	
+	$cityFix = preg_replace("/ /", "_" , $city);
+	//echo $cityFix;
+	
+	$weatherAPI = "http://api.wunderground.com/api/e6a8c06bb1ce5653/conditions/q/". $state. "/" . $cityFix .".json";
+	$results = file_get_contents($weatherAPI);
+	//var_dump($results);
+	$deCode = json_decode($results, true);
+	var_dump($deCode);
+?>
+
+<?php 
+	//echo ('<img src="{$deCode["current_observation"]["icon_url"]}" />');
+	//echo("<br />".$deCode['current_observation']['icon_url']);
+	//echo ('<br /><img src="'.$deCode['current_observation']['icon_url'].'" />');
+	
+	//var_dump($deCode['current_observation']['icon_url']);
+	
+	$map = "http://api.wunderground.com/api/e6a8c06bb1ce5653/animatedradar/q/" . $state . "/" . $cityFix . ".gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=50";
+	//echo "<img src='".$map."' />";	        	
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,42 +88,22 @@
   </head>
 
   <body>
-  
-  <?php 
-		$url = "http://api.hostip.info/get_json.php?position=true";
-		$results = file_get_contents($url);
-		//var_dump($results);
-		$deCode = json_decode($results, true);
-		// var_dump($deCode);
-		$cityData = $deCode["city"];
+  <?php
+		//get user from facebook object
+		$user = $facebook->getUser();
 		
-		$state = preg_replace("/^.+, /", '' , $cityData);
-		//echo $state;
+		if ($user): //check for existing user id
+			echo '<p>User ID: ', $user, '</p>';
+		else: //user doesn't exist
+			$loginUrl = $facebook->getLoginUrl(array(
+				'display'=>'popup',
+				'redirect_uri' => 'http://apps.facebook.com/gamestarrating'
+			));
+			echo '<p><a href="', $loginUrl, '" target="_top">login</a></p>';
+		endif; //check for user id
 		
-		$city = preg_replace("/, \w\w$/", '' , $cityData);
-		//echo $city;
-		
-		$cityFix = preg_replace("/ /", "_" , $city);
-		//echo $cityFix;
-		
-		$weatherAPI = "http://api.wunderground.com/api/e6a8c06bb1ce5653/conditions/q/". $state. "/" . $cityFix .".json";
-		$results = file_get_contents($weatherAPI);
-		//var_dump($results);
-		$deCode = json_decode($results, true);
-		//var_dump($deCode);
-	?>
-        	<?php 
-        	 	//echo ('<img src="{$deCode["current_observation"]["icon_url"]}" />');
-        	 	//echo("<br />".$deCode['current_observation']['icon_url']);
-        	 	//echo ('<br /><img src="'.$deCode['current_observation']['icon_url'].'" />');
-        	
-	        	//var_dump($deCode['current_observation']['icon_url']);
-	        	
-	        	$map = "http://api.wunderground.com/api/e6a8c06bb1ce5653/animatedradar/q/" . $state . "/" . $cityFix . ".gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=50";
-	        	//echo "<img src='".$map."' />";
-	        	
-        	?>
-  
+		var_dump($user);
+  ?>
   
   					<!-- Nav Bar -->
 
@@ -158,7 +182,7 @@
 	            </div><!--/span-->
 	           
 	            <div class="span4">
-	              <h2>Heading</h2>
+	              <h2>Hey <?php echo "KILLA!"?></h2>
 	              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 	              <p><a class="btn" href="#">View details &raquo;</a></p>
 	            </div><!--/span-->
