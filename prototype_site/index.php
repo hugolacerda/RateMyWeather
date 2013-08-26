@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 
 include("models/view.php");
 
