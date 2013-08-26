@@ -1,6 +1,6 @@
 <?php
 	/*
-require 'php-sdk/facebook.php';
+require 'php-sdk/.php';
 	$facebook = new Facebook(array(
 		'appId' => '139858236213584',
 		'secret' => '81da1c19b430343d0efdd95a12c00b9a'
@@ -14,7 +14,7 @@ require 'php-sdk/facebook.php';
 	$results = file_get_contents($url);
 	//var_dump($results);
 	$deCode = json_decode($results, true);
-	//var_dump($deCode);
+	// var_dump($deCode);
 	$cityData = $deCode["city"];
 	
 	$state = preg_replace("/^.+, /", '' , $cityData);
@@ -30,8 +30,9 @@ require 'php-sdk/facebook.php';
 	$results = file_get_contents($weatherAPI);
 	//var_dump($results);
 	$deCode = json_decode($results, true);
-	//var_dump($deCode);
+	var_dump($deCode);
 ?>
+
 <?php 
 	//echo ('<img src="{$deCode["current_observation"]["icon_url"]}" />');
 	//echo("<br />".$deCode['current_observation']['icon_url']);
@@ -40,19 +41,7 @@ require 'php-sdk/facebook.php';
 	//var_dump($deCode['current_observation']['icon_url']);
 	
 	$map = "http://api.wunderground.com/api/e6a8c06bb1ce5653/animatedradar/q/" . $state . "/" . $cityFix . ".gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=50";
-	//echo $map;	        	
-?>
-<?php 
-	$forecastURL = "http://api.wunderground.com/api/e6a8c06bb1ce5653/forecast/q/" . $state . "/" . $cityFix . ".json";
-	//var_dump($forecastURL);
-	$forecastResults = file_get_contents($forecastURL);
-	//var_dump($forecastResults);
-	$forecastDeCode = json_decode($forecastResults, true);
-	//var_dump($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][1]); /* Gives Highs and Lows */       	
-	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"]);        	
-	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]);      	
-	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]);        	
-	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]);        	
+	//echo "<img src='".$map."' />";	        	
 ?>
 
 <!DOCTYPE html>
@@ -104,10 +93,10 @@ require 'php-sdk/facebook.php';
   <?php
 		//get user from facebook object
 		/*
-			$user = $facebook->getUser();
+$user = $facebook->getUser();
 		
 		if ($user): //check for existing user id
-			echo '<p>User ID is: ', $user, '</p>';
+			echo '<p>User ID: ', $user, '</p>';
 		else: //user doesn't exist
 			$loginUrl = $facebook->getLoginUrl(array(
 				'display'=>'popup',
@@ -116,9 +105,8 @@ require 'php-sdk/facebook.php';
 			echo '<p><a href="', $loginUrl, '" target="_top">login</a></p>';
 		endif; //check for user id
 		
-		//var_dump($user);
-		var_dump($deCode);
-		*/
+		var_dump($user);
+*/
   ?>
   
   					<!-- Nav Bar -->
@@ -192,39 +180,19 @@ require 'php-sdk/facebook.php';
           <div class="container">     
 	          <div class="row-fluid">
 	            <div class="span4">
-	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["title"]); ?></h2>
-	              <div class="row">
-	              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["icon_url"]; ?>" class="icon-rounded"  width="400"></div>
-	              <div class="span7"> HOLLA</div>
-	              </div>
-	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["fcttext"]; ?></p>
+	              <h2>Heading</h2>
+	              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 	              <p><a class="btn" href="#">View details &raquo;</a></p>
 	            </div><!--/span-->
 	           
 	            <div class="span4">
-	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["title"]); ?></h2>
-	              <div class="row">
-		              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["icon_url"]; ?>" class="icon-rounded" width="200px"></div> <!-- ENDS Weather Icon -->
-		              <div class="span7 row">
-		              	<div class="span4">
-			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][1]["high"]["fahrenheit"]); ?>&deg;</div>
-			              	<p>High</p>
-			              	<!-- ENDS Weather High -->
-		              	</div>
-		              	<div class="span4 offset1">
-			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][1]["low"]["fahrenheit"]); ?>&deg;</div>
-			              	<p>Low</p>
-			              	<!-- ENDS Weather Low -->
-			            </div>
-		              </div>
-	              </div>
-	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["fcttext"]; ?></p>
+	              <h2>Hey <?php echo "KILLA!"?></h2>
+	              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 	              <p><a class="btn" href="#">View details &raquo;</a></p>
 	            </div><!--/span-->
 	            <div class="span4">
-	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["title"]); ?></h2>
-	              <img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["icon_url"]; ?>" class="icon-rounded"  width="400">
-	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["fcttext"]; ?></p>
+	              <h2>Heading</h2>
+	              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 	              <p><a class="btn" href="#">View details &raquo;</a></p>
 	            </div><!--/span-->
 	          </div><!--/row-->
