@@ -1,27 +1,17 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rate My Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-include("models/view.php");
-
-$view = new View();
-$view->printHeader();
-
-//===== Check to see if a controller is typed in
-if(empty($_GET["controller"])) {
-    $con = 'home';
-}
-else {
-    $con = $_GET["controller"];
-}
-
-//===== Decide which CONTROLLER to use
-if($con == 'home') {
-    include ("controllers/home.php");
-
-    $controller = new Home();
-    $controller->get($_GET);
-}
-
-?>  padding-top: 60px;
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
@@ -147,10 +137,16 @@ if($con == 'home') {
 			      		<div class="row">
 				      		<div class="focus-font">
 				      			<div class="span1">
-				      				<i class="icon-thumbs-up span-green"></i>
+                      <span class="icon-stack">
+                      <i class="icon-sign-blank icon-stack-base"></i>
+				      				<i class="icon-thumbs-up icon-light"></i>
+                      <span class="icon-stack">
 				      			</div>
 				      			<div class="span1">
-				      				<i class="icon-thumbs-down span-red"></i>
+				      				<span class="icon-stack">
+                      <i class="icon-sign-blank icon-stack-base"></i>
+                      <i class="icon-thumbs-down icon-light"></i>
+                      <span class="icon-stack">
 				      			</div>
 				      		</div>
 

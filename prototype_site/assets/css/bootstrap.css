@@ -359,6 +359,17 @@ a:focus {
   width: 60px;
 }
 
+/*.span1 > i {
+  background: lime;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 0;
+}
+
+i[class^="icon-"] {
+  color: red;
+}*/
+
 .offset12 {
   margin-left: 980px;
 }
