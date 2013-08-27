@@ -1,14 +1,4 @@
-<?php
-	/*
-require 'php-sdk/facebook.php';
-	$facebook = new Facebook(array(
-		'appId' => '139858236213584',
-		'secret' => '81da1c19b430343d0efdd95a12c00b9a'
- 	));
- 	
- 	$coolBeans = "COOL BEANS";
-*/
-?>
+
 <?php 
 	//$url = "http://api.hostip.info/get_json.php?position=true";
 	$url = "http://api.wunderground.com/api/e6a8c06bb1ce5653/geolookup/q/autoip.json";
