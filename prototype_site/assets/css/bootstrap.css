@@ -256,6 +256,7 @@ a:focus {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);       
 }
 .icon-rounded {
+  width: 80px !important;
   background-color: #fff;
   -webkit-border-radius: 200px;
      -moz-border-radius: 200px;

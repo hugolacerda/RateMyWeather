@@ -10,15 +10,17 @@ require 'php-sdk/facebook.php';
 */
 ?>
 <?php 
-	$url = "http://api.hostip.info/get_json.php?position=true";
+	//$url = "http://api.hostip.info/get_json.php?position=true";
+	$url = "http://api.wunderground.com/api/e6a8c06bb1ce5653/geolookup/q/autoip.json";
 	$results = file_get_contents($url);
 	//var_dump($results);
 	$deCode = json_decode($results, true);
 	//var_dump($deCode);
-	$cityData = $deCode["city"];
+	$cityData = $deCode["location"]["city"];
 	
-	$state = preg_replace("/^.+, /", '' , $cityData);
+	//$state = preg_replace("/^.+, /", '' , $cityData);
 	//echo $state;
+	$state = $deCode["location"]["state"];
 	
 	$city = preg_replace("/, \w\w$/", '' , $cityData);
 	//echo $city;
@@ -48,7 +50,7 @@ require 'php-sdk/facebook.php';
 	$forecastResults = file_get_contents($forecastURL);
 	//var_dump($forecastResults);
 	$forecastDeCode = json_decode($forecastResults, true);
-	//var_dump($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][1]); /* Gives Highs and Lows */       	
+	//var_dump($forecastDeCode["forecast"]["simpleforecast"]["forecastday"]); /* Gives Highs and Lows */       	
 	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"]);        	
 	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]);      	
 	//var_dump($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]);        	
@@ -154,7 +156,7 @@ require 'php-sdk/facebook.php';
            <div class="hero-unit">
 			<div class="row">		     
 		      	<div class="span5">  		       
-			        <img src="<?php echo $map; ?>" class="img-rounded" width="400">    <!-- map --> 
+			        <img src="<?php echo $map; ?>" class="img-rounded"  width="400">    <!-- map --> 
 		      	</div>
 		      	<div class="span5 ">
 		      		<h1>City: <?php echo $deCode['current_observation']['display_location']['city']; ?></h1><br>
@@ -194,17 +196,7 @@ require 'php-sdk/facebook.php';
 	            <div class="span4">
 	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["title"]); ?></h2>
 	              <div class="row">
-	              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["icon_url"]; ?>" class="icon-rounded"  width="400"></div>
-	              <div class="span7"> HOLLA</div>
-	              </div>
-	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["fcttext"]; ?></p>
-	              <p><a class="btn" href="#">View details &raquo;</a></p>
-	            </div><!--/span-->
-	           
-	            <div class="span4">
-	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["title"]); ?></h2>
-	              <div class="row">
-		              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["icon_url"]; ?>" class="icon-rounded" width="200px"></div> <!-- ENDS Weather Icon -->
+		              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][2]["icon_url"]; ?>" class="icon-rounded" width="200"></div> <!-- ENDS Weather Icon -->
 		              <div class="span7 row">
 		              	<div class="span4">
 			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][1]["high"]["fahrenheit"]); ?>&deg;</div>
@@ -221,9 +213,45 @@ require 'php-sdk/facebook.php';
 	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["fcttext"]; ?></p>
 	              <p><a class="btn" href="#">View details &raquo;</a></p>
 	            </div><!--/span-->
+	           
+	            <div class="span4">
+	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["title"]); ?></h2>
+	              <div class="row">
+		              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["icon_url"]; ?>" class="icon-rounded" width="200"></div> <!-- ENDS Weather Icon -->
+		              <div class="span7 row">
+		              	<div class="span4">
+			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][2]["high"]["fahrenheit"]); ?>&deg;</div>
+			              	<p>High</p>
+			              	<!-- ENDS Weather High -->
+		              	</div>
+		              	<div class="span4 offset1">
+			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][2]["low"]["fahrenheit"]); ?>&deg;</div>
+			              	<p>Low</p>
+			              	<!-- ENDS Weather Low -->
+			            </div>
+		              </div>
+	              </div>
+	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][4]["fcttext"]; ?></p>
+	              <p><a class="btn" href="#">View details &raquo;</a></p>
+	            </div><!--/span-->
+	            
 	            <div class="span4">
 	              <h2><?php echo($forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["title"]); ?></h2>
-	              <img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["icon_url"]; ?>" class="icon-rounded"  width="400">
+	              <div class="row">
+		              <div class="span4 offset1"><img src="<?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["icon_url"]; ?>" class="icon-rounded" width="200"></div> <!-- ENDS Weather Icon -->
+		              <div class="span7 row">
+		              	<div class="span4">
+			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][3]["high"]["fahrenheit"]); ?>&deg;</div>
+			              	<p>High</p>
+			              	<!-- ENDS Weather High -->
+		              	</div>
+		              	<div class="span4 offset1">
+			              	<div class="temp"> <?php echo($forecastDeCode["forecast"]["simpleforecast"]["forecastday"][3]["low"]["fahrenheit"]); ?>&deg;</div>
+			              	<p>Low</p>
+			              	<!-- ENDS Weather Low -->
+			            </div>
+		              </div>
+	              </div>
 	              <p><?php echo $forecastDeCode["forecast"]["txt_forecast"]["forecastday"][6]["fcttext"]; ?></p>
 	              <p><a class="btn" href="#">View details &raquo;</a></p>
 	            </div><!--/span-->
