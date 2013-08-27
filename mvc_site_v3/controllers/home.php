@@ -98,17 +98,19 @@ class Home {
 	function callAPIs(){
 
 		//== User Location API
-		$locationAPI = "http://api.hostip.info/get_json.php?position=true";
+		//$locationAPI = "http://api.hostip.info/get_json.php?position=true";
+		$locationAPI = "http://api.wunderground.com/api/e6a8c06bb1ce5653/geolookup/q/autoip.json";
 		$results = file_get_contents($locationAPI);
 		$deCode = json_decode($results, true);
 
 		// var_dump($deCode);
 
 		//User city data
-		$cityData = $deCode["city"];
+		$cityData = $deCode["location"]["city"];
 
 		//Regular expressions to get strings from Location API data
-		$state = preg_replace("/^.+, /", '' , $cityData);
+		//$state = preg_replace("/^.+, /", '' , $cityData);
+		$state = $deCode["location"]["state"];
 		$city = preg_replace("/, \w\w$/", '' , $cityData);
 		$cityFix = preg_replace("/ /", "_" , $city); // Fixes cities that have more than 1 word (West Palm Beach) and replaces the spaces with "_"
 
