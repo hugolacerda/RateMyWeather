@@ -3,7 +3,7 @@
 	//$url = "http://api.hostip.info/get_json.php?position=true";
 	$url = "http://api.wunderground.com/api/e6a8c06bb1ce5653/geolookup/q/autoip.json";
 	$results = file_get_contents($url);
-	//var_dump($results);
+	var_dump($results);
 	$deCode = json_decode($results, true);
 	//var_dump($deCode);
 	$cityData = $deCode["location"]["city"];
